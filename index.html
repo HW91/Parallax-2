@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parallax Squirrel</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #e0e0ff, #c0c0ff);
+    }
+    .parallax-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+    }
+    .squirrel {
+      position: absolute;
+      width: 200px;
+      height: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s linear;
+    }
+  </style>
+</head>
+<body>
+  <div class="parallax-container">
+    <img src="image1.png" alt="Purple Squirrel" class="squirrel" id="squirrel">
+  </div>
+
+  <script>
+    const squirrel = document.getElementById('squirrel');
+    const container = document.querySelector('.parallax-container');
+
+    document.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const offsetX = (clientX - centerX) / 20;
+      const offsetY = (clientY - centerY) / 20;
+
+      squirrel.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
+    });
+  </script>
+</body>
+</html>
